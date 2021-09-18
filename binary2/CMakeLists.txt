@@ -27,5 +27,5 @@ add_executable(binary2
 
 target_link_libraries(binary2
     library2
-    Repo1::library1
+    # Repo1::library1
 )
