@@ -3,7 +3,7 @@
 
 
 
-extern void repo1_library2_display();
+extern void repo2_library2_display();
 
 
 
