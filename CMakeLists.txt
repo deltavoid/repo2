@@ -51,39 +51,25 @@ add_subdirectory(binary2)
 
 # export
 
-set(CMAKE_INSTALL_INCLUDEDIR include)
-set(CMAKE_INSTALL_LIBDIR lib)
+# set(CMAKE_INSTALL_INCLUDEDIR include)
+# set(CMAKE_INSTALL_LIBDIR lib)
 
-include(CMakePackageConfigHelpers)
-set(install_cmakedir ${CMAKE_INSTALL_LIBDIR}/cmake/repo2)
+
+# set(install_cmakedir ${CMAKE_INSTALL_LIBDIR}/cmake/repo2)
 
 install(
     TARGETS
         library2
     EXPORT repo2-export
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY DESTINATION lib/repo2
+    ARCHIVE DESTINATION lib/repo2
 )
 
 install(
     EXPORT repo2-export
     FILE Repo2Targets.cmake
     NAMESPACE Repo2::
-    DESTINATION ${install_cmakedir}
-)
-
-
-write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/Repo2ConfigVersion.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY ExactVersion
-)
-
-
-configure_package_config_file(
-    ${CMAKE_CURRENT_LIST_DIR}/Repo2Config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/Repo2Config.cmake
-    INSTALL_DESTINATION ${install_cmakedir}
+    DESTINATION lib/cmake/repo2
 )
 
 
@@ -97,12 +83,65 @@ export(PACKAGE Repo2)
 
 
 
-#
-# Packaging.
-#
 
-set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
-set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
-set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
 
-include(CPack)
+include(CMakePackageConfigHelpers)
+
+
+
+configure_package_config_file(
+    ${CMAKE_CURRENT_LIST_DIR}/Repo2Config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/Repo2Config.cmake
+    INSTALL_DESTINATION lib/cmake/repo2
+)
+
+# the config.cmake here is not suitable for installation
+install(
+  FILES ${CMAKE_CURRENT_BINARY_DIR}/Repo2Config.cmake
+  DESTINATION lib/cmake/repo2
+)
+
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/Repo2ConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY ExactVersion
+)
+
+install(
+  FILES ${CMAKE_CURRENT_BINARY_DIR}/Repo2ConfigVersion.cmake
+  DESTINATION "lib/cmake/repo2"
+)
+
+
+
+
+
+
+install(
+  FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/library2/public/library2.h
+  DESTINATION "include/repo2/library2/public"
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# #
+# # Packaging.
+# #
+
+# set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+# set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+# set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+
+# include(CPack)
