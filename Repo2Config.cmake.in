@@ -23,7 +23,7 @@
 # We would like to use `find_dependency`, but it is not supported properly until CMake 3.8.
 #include (FindDependencyMacro)
 
-# message("static_lib1 config cmake in begin")
+message("Repo2Config.cmake in begin")
 
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
@@ -55,9 +55,13 @@ include ("${CMAKE_CURRENT_LIST_DIR}/../Repo2FindDeps.cmake")
 # static_lib1_find_dependencies ()
 
 if (NOT TARGET Repo2::library2)
+  
+  # message("include Repo2Targets.cmake begin")
   include ("${CMAKE_CURRENT_LIST_DIR}/Repo2Targets.cmake")
+  
+  # message("include Repo2Targets.cmake end")
 endif ()
 
 
-# message("static_lib1 config cmake in end")
+message("Repo2Config.cmake in end")
 
