@@ -2,7 +2,14 @@
 
 message("Repo2FindDeps.cmake begin")
 
-find_package(Repo1 REQUIRED)
+# find_package(Repo1 REQUIRED)
+
+include(CMakeFindDependencyMacro)
+
+
+find_dependency(Repo1 REQUIRED)
+
+
 
 if (NOT TARGET Repo1::library1)
   message("not find Repo1::library1")
