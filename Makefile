@@ -23,6 +23,11 @@ $(BUILD_DIR)/Makefile: Makefile
 clean:	
 	rm -rf $(BUILD_DIR)
 
+uninstall:
+	-rm -rf /usr/local/lib/repo2
+	-rm -rf /usr/local/lib/cmake/repo2
+	-rm -rf /usr/local/include/repo2
+
 
 run: build
 	$(BUILD_DIR)/binary2/binary2
