@@ -54,8 +54,6 @@ add_subdirectory(binary2)
 
 # set(CMAKE_INSTALL_INCLUDEDIR include)
 # set(CMAKE_INSTALL_LIBDIR lib)
-
-
 # set(install_cmakedir ${CMAKE_INSTALL_LIBDIR}/cmake/repo2)
 
 install(
@@ -80,7 +78,7 @@ export(
     NAMESPACE Repo2::
 )
 
-export(PACKAGE Repo2)
+# export(PACKAGE Repo2)
 
 
 
@@ -124,25 +122,3 @@ install(
   DESTINATION "include/repo2/library2/public"
 )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# #
-# # Packaging.
-# #
-
-# set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
-# set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
-# set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-
-# include(CPack)
